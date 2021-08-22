@@ -2,12 +2,12 @@ import * as Schema from "./schema"
 
 
 export interface ICompanies {
-	studio: ICompany[],
-	network: ICompany[],
-	production: ICompany[],
-	distributor: ICompany[],
-	specialEffects?: ICompany[],
-	special_effects?: ICompany[] //@WARN this is a mistake
+	studio: ICompany[] | null,
+	network: ICompany[] | null,
+	production: ICompany[] | null,
+	distributor: ICompany[] | null,
+	specialEffects?: ICompany[] | null,
+	special_effects?: ICompany[] | null //@WARN this is a mistake
 }
 
 /**
@@ -262,10 +262,25 @@ export interface ISearchResult {
 /**
  * Extended season record
  */
-export interface ISeasonExtendedRecord extends Schema.ISeasonBaseRecord {
+export interface ISeasonExtendedRecord {
 	artwork: Schema.IArtworkBaseRecord[],
 	episodes: IEpisodeBaseRecord[],
 	trailers: Schema.ITrailer[],
+	abbreviation?: string,          // @WARN this may be undefined
+	country?: string,          // @WARN this may be undefined
+	id: number,
+	image: string | null,
+	imageType: number | null,   // @WARN This attribute should be looked into...
+	name: string,
+	nameTranslations: string[],
+	network: Schema.INetworkBaseRecord,
+	number: number,          // int64
+	overviewTranslations: string[],
+	seriesId: number,          // int64
+	slug?: string,          // @WARN possibly undefined with extended record
+	type: Schema.ISeasonType           // int64
+	companies: ICompanies,
+	tagOptions: Schema.ITagOption[]
 }
 
 /**

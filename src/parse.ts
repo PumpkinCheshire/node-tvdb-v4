@@ -62,11 +62,14 @@ const parse = {
 
 	companies( companies: Raw.ICompanies ) {
 		return <Schema.ICompanies> Object.assign( companies, {
-			studio: companies.studio.map( parse.company ),
-			network: companies.network.map( parse.company ),
-			production: companies.production.map( parse.company ),
-			distributor: companies.distributor.map( parse.company ),
-			specialEffects: companies.specialEffects ? companies.specialEffects.map( parse.company ) : companies.special_effects?.map( parse.company )
+			studio: companies.studio ? companies.studio.map( parse.company ) : [],
+			network: companies.network ? companies.network.map( parse.company ) : [],
+			production: companies.production ? companies.production.map( parse.company ) : [],
+			distributor: companies.distributor ? companies.distributor.map( parse.company ) : [],
+			specialEffects:
+				companies.specialEffects ? companies.specialEffects.map( parse.company ) : (
+					companies.special_effects ? companies.special_effects.map( parse.company ) : []
+				)
 		} )
 	},
 
@@ -106,11 +109,7 @@ const parse = {
 	 */
 	episodeExtendedRecord( episode: Raw.IEpisodeExtendedRecord ) {
 		return <Schema.IEpisodeExtendedRecord> Object.assign( parse.episodeBaseRecord( episode ), {
-<<<<<<< HEAD
 			characters: episode.characters ? episode.characters.map( parse.character ) : [],
-=======
-			characters: episode.characters ? episode.characters.map( parse.character ) : null,
->>>>>>> bbdf35ff156890c4dc2147825c669b3f7125146f
 			networks: episode.networks ? parse.company( episode.networks ) : null,
 			studios: episode.studios ? parse.company( episode.studios ) : null,
 		} )
@@ -189,9 +188,10 @@ const parse = {
 	/**
 	 * Mutate a raw extended season schema into a parsed schema
 	 */
-	seasonRecord( season: Raw.ISeasonExtendedRecord ) {
+	seasonExtendedRecord( season: Raw.ISeasonExtendedRecord ) {
 		return <Schema.ISeasonExtendedRecord> Object.assign( season, {
 			episodes: season.episodes.map( parse.episodeBaseRecord ),
+			companies: parse.companies( season.companies )
 		} )
 	},
 
@@ -207,15 +207,27 @@ const parse = {
 		} )
 	},
 
+	seriesCompanies( companies: Raw.ICompany[] ): Schema.ICompanies {
+		return <Schema.ICompanies> {
+			studio: companies.filter( company => company.companyType?.companyTypeId === 2 ).map( parse.company ),
+			network: companies.filter( company => company.companyType?.companyTypeId === 1 ).map( parse.company ),
+			production: companies.filter( company => company.companyType?.companyTypeId === 3 ).map( parse.company ),
+			distributor: companies.filter( company => company.companyType?.companyTypeId === 4 ).map( parse.company ),
+			specialEffects: companies.filter( company => company.companyType?.companyTypeId === 5 ).map( parse.company ),
+		}
+	},
+
 	/**
 	 * Mutate a raw extended series schema into a parsed schema
 	 */
 	seriesExtendedRecord( series: Raw.ISeriesExtendedRecord ) {
 		return <Schema.ISeriesExtendedRecord> Object.assign( parse.seriesBaseRecord( series ), {
 			characters: series.characters.map( parse.character ),
-			companies: series.companies.map( parse.company )
+			companies: parse.seriesCompanies( series.companies )
 		} )
-	}
+	},
+
+
 }
 
 export default parse

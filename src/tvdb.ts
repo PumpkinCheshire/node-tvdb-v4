@@ -446,7 +446,7 @@ export default class TVDB {
 	 */
 	public async seasonExtended( id: number ) {
 		let res = await this.requestManager.get<Raw.ISeasonExtendedRecord>( `/seasons/${ id }/extended`, this.__token )
-		return parse.seasonRecord( res )
+		return parse.seasonExtendedRecord( res )
 	}
 
 	/**

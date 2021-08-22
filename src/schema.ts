@@ -140,8 +140,8 @@ export type ICompany = Modify<Raw.ICompany, {
  * A company type record
  */
 export interface ICompanyType {
-	id: number,
-	name: string
+	companyTypeId: number,
+	companyTypeName: string
 }
 
 /**
@@ -202,7 +202,7 @@ export type IEpisodeBaseRecord = Modify<Raw.IEpisodeBaseRecord, {
  * Extended episode record
  */
 export type IEpisodeExtendedRecord = Modify<Modify<Raw.IEpisodeExtendedRecord, IEpisodeBaseRecord>, {
-	characters: ICharacter[] | null,
+	characters: ICharacter[],
 	networks: ICompany | null,
 	studios: ICompany | null,
 }>
@@ -363,7 +363,7 @@ export interface ISeasonBaseRecord {
 	seriesId: number,          // int64
 	slug?: string,          // @WARN possibly undefined with extended record
 	type: ISeasonType           // int64
-	companies: ICompanies,
+	companies: Raw.ICompanies,
 	tagOptions: ITagOption[]
 }
 
@@ -371,7 +371,8 @@ export interface ISeasonBaseRecord {
  * Extended season record
  */
 export type ISeasonExtendedRecord = Modify<Raw.ISeasonExtendedRecord, {
-	episodes: IEpisodeBaseRecord[]
+	episodes: IEpisodeBaseRecord[],
+	companies: ICompanies
 }>
 
 /**
@@ -407,7 +408,7 @@ export type ISeriesBaseRecord = Modify<Raw.ISeriesBaseRecord, {
  */
 export type ISeriesExtendedRecord = Modify<Modify<Raw.ISeriesExtendedRecord, ISeriesBaseRecord>, {
 	characters: ICharacter[]
-	companies: ICompany[]
+	companies: ICompanies
 }>
 
 /**
