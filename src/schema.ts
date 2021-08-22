@@ -202,7 +202,7 @@ export type IEpisodeBaseRecord = Modify<Raw.IEpisodeBaseRecord, {
  * Extended episode record
  */
 export type IEpisodeExtendedRecord = Modify<Modify<Raw.IEpisodeExtendedRecord, IEpisodeBaseRecord>, {
-	characters: ICharacter[],
+	characters: ICharacter[] | null,
 	networks: ICompany | null,
 	studios: ICompany | null,
 }>
