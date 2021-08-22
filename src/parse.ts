@@ -66,7 +66,7 @@ const parse = {
 			network: companies.network.map( parse.company ),
 			production: companies.production.map( parse.company ),
 			distributor: companies.distributor.map( parse.company ),
-			specialEffects: companies.specialEffects.map( parse.company )
+			specialEffects: companies.specialEffects ? companies.specialEffects.map( parse.company ) : companies.special_effects?.map( parse.company )
 		} )
 	},
 
@@ -106,7 +106,7 @@ const parse = {
 	 */
 	episodeExtendedRecord( episode: Raw.IEpisodeExtendedRecord ) {
 		return <Schema.IEpisodeExtendedRecord> Object.assign( parse.episodeBaseRecord( episode ), {
-			characters: episode.characters.map( parse.character ),
+			characters: episode.characters ? episode.characters.map( parse.character ) : [],
 			networks: episode.networks ? parse.company( episode.networks ) : null,
 			studios: episode.studios ? parse.company( episode.studios ) : null,
 		} )
@@ -137,8 +137,8 @@ const parse = {
 		return <Schema.IMovieExtendedRecord> Object.assign( movie, {
 			budget: parseFloat( movie.budget ),
 			boxOffice: parseFloat( movie.boxOffice ),
-			characters: movie.characters.map( parse.character ),
-			releases: movie.releases.map( parse.release ),
+			characters: movie.characters ? movie.characters.map( parse.character ) : [],
+			releases: movie.releases ? movie.releases.map( parse.release ) : [],
 			lastUpdated: parse.date( movie.lastUpdated ),
 			companies: parse.companies( movie.companies )
 		} )

@@ -6,7 +6,8 @@ export interface ICompanies {
 	network: ICompany[],
 	production: ICompany[],
 	distributor: ICompany[],
-	specialEffects: ICompany[]
+	specialEffects?: ICompany[],
+	special_effects?: ICompany[] //@WARN this is a mistake
 }
 
 /**
@@ -130,7 +131,7 @@ export interface IEpisodeExtendedRecord extends IEpisodeBaseRecord {
 	airsBeforeEpisode: number | null,
 	airsBeforeSeason: number | null,
 	awards: Schema.IAwardBaseRecord[],
-	characters: ICharacter[],
+	characters: ICharacter[] | null,
 	contentRatings: Schema.IContentRating[],
 	network?: Schema.INetworkBaseRecord,  // @WARN possibly undefined...
 	productionCode: string,
@@ -184,12 +185,12 @@ export interface IMovieExtendedRecord extends IMovieBaseRecord {
 	awards: Schema.IAwardBaseRecord[] | null,
 	boxOffice: string,
 	budget: string,
-	characters: ICharacter[],
+	characters: ICharacter[] | null,
 	lists: Schema.IListBaseRecord[],
 	genres: Schema.IGenreBaseRecord[],
 	originalCountry: string,
 	originalLanguage: string | null,
-	releases: IRelease[],
+	releases: IRelease[] | null,
 	remoteIds: Schema.IRemoteID[],
 	contentRatings: Schema.IContentRating[],
 	studios: Schema.IStudioBaseRecord[],
