@@ -106,7 +106,11 @@ const parse = {
 	 */
 	episodeExtendedRecord( episode: Raw.IEpisodeExtendedRecord ) {
 		return <Schema.IEpisodeExtendedRecord> Object.assign( parse.episodeBaseRecord( episode ), {
+<<<<<<< HEAD
 			characters: episode.characters ? episode.characters.map( parse.character ) : [],
+=======
+			characters: episode.characters ? episode.characters.map( parse.character ) : null,
+>>>>>>> bbdf35ff156890c4dc2147825c669b3f7125146f
 			networks: episode.networks ? parse.company( episode.networks ) : null,
 			studios: episode.studios ? parse.company( episode.studios ) : null,
 		} )
