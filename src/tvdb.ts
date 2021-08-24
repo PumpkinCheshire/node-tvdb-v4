@@ -534,12 +534,15 @@ export default class TVDB {
 	 * @param since Timestamp in seconds
 	 */
 	public async updates( since: number | Date, type: string, action: string ) {
+
 		if ( since instanceof Date ) {
 			since = Math.floor( since.getTime() / 1000 )
 		}
+
 		let res = await this.requestManager.get<Raw.IEntityUpdate[]>( `/updates`, this.__token, {
 			since, type, action
 		} )
+
 		return res.map( parse.entityUpdate )
 	}
 }
