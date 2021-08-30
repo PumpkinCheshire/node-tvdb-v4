@@ -258,7 +258,7 @@ describe( "TVDB", () => {
 			testRecord( () => tvdb.list( 1 ), BASE_KEYS )
 		} )
 		describe( "Fetch an extended list record", () => {
-			testRecord( () => tvdb.listExtended( 1 ), [ ...BASE_KEYS, "entities", "score" ] )
+			testRecord( () => tvdb.listExtended( 1 ), [ ...BASE_KEYS, "entities" ] )
 		} )
 	} )
 
@@ -450,7 +450,7 @@ describe( "TVDB", () => {
 		} )
 		describe( "Fetch an extended season record", () => {
 			testRecord( () => tvdb.seasonExtended( 16748 ), [
-				...BASE_KEYS, "artwork", "episodes", "trailers"
+				...BASE_KEYS, "artwork", "episodes", "trailers", "tagOptions"
 			],
 				( season ) => {
 					expect( season.episodes ).to.not.be.empty
