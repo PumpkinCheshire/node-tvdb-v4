@@ -119,7 +119,8 @@ export interface IEpisodeBaseRecord {
 	runtime: number,
 	seasonNumber: number,
 	seasons: Schema.ISeasonBaseRecord[],
-	seriesId: number,                        // int64
+	seriesId: number,
+	finaleType: string | null             // int64
 	lastUpdated: string
 }
 
@@ -138,7 +139,6 @@ export interface IEpisodeExtendedRecord extends IEpisodeBaseRecord {
 	remoteIds: Schema.IRemoteID[],
 	tagOptions: Schema.ITagOption[],
 	trailers: Schema.ITrailer[],
-	finaleType: string | null,
 	nominations: Schema.IAwardNomineeBaseRecord | null,
 	networks: ICompany | null,
 	studios: ICompany | null,
@@ -156,7 +156,8 @@ export interface IListBaseRecord {
 	nameTranslations: string[],
 	overview: string,
 	overviewTranslations: string[],
-	url: string
+	url: string,
+	score: number
 }
 
 /**
@@ -301,7 +302,7 @@ export interface ISeriesBaseRecord {
 	nextAired: string,
 	originalCountry: string,
 	originalLanguage: string,
-	originalNetwork: Schema.INetworkBaseRecord,  // @WARN Not listed in spec
+	// originalNetwork: Schema.INetworkBaseRecord,  // @WARN Not listed in spec
 	overviewTranslations: string[],
 	score: number,
 	slug: string,

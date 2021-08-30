@@ -246,7 +246,6 @@ export type IListBaseRecord = Modify<Raw.IListBaseRecord, {
  */
 export interface IListExtendedRecord extends IListBaseRecord {
 	entities: IEntity[],
-	score: number      // int64
 }
 
 /**
@@ -357,7 +356,7 @@ export interface ISeasonBaseRecord {
 	imageType: number | null,   // @WARN This attribute should be looked into...
 	name: string,
 	nameTranslations: string[],
-	network: INetworkBaseRecord,
+	// network: INetworkBaseRecord,
 	number: number,          // int64
 	overviewTranslations: string[],
 	seriesId: number,          // int64

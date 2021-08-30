@@ -135,7 +135,7 @@ describe( "TVDB", () => {
 		describe( "Fetch a character record", () => {
 			testRecord( () => tvdb.character( 65120457 ), [
 				"aliases", "episodeId", "id", "image", "isFeatured", "movieId", "name",
-				"nameTranslations", "overviewTranslations", "peopleId", "peopleType", "person",
+				"nameTranslations", "overviewTranslations", "peopleId", "peopleType", "personName",
 				"seriesId", "sort", "type", "url"
 			],
 				util.expectCharacterToBeParsed
@@ -148,7 +148,7 @@ describe( "TVDB", () => {
 	 */
 	describe( "Companies", () => {
 		const KEYS = [
-			"activeDate", "aliases", "country", "id", "inactiveDate", "name", "nameTranslations",
+			"activeDate", "aliases", "companyType", "country", "id", "inactiveDate", "name", "nameTranslations",
 			"overviewTranslations", "primaryCompanyType", "slug"
 		]
 		describe( "Fetch all company records", () => {
@@ -172,7 +172,7 @@ describe( "TVDB", () => {
 	 */
 	describe( "Episodes", () => {
 		const BASE_KEYS = [
-			"aired", "id", "image", "imageType", "isMovie", "name", "nameTranslations", "number",
+			"aired", "id", "image", "imageType", "isMovie", "name", "nameTranslations", "number", "finaleType", "lastUpdated",
 			"overviewTranslations", "runtime", "seasonNumber", "seasons", "seriesId",
 		]
 		describe( "Fetch an episode record", () => {
@@ -180,7 +180,7 @@ describe( "TVDB", () => {
 		} )
 		describe( "Fetch an extended episode record", () => {
 			testRecord( () => tvdb.episodeExtended( 341283 ), [ ...BASE_KEYS, "airsAfterSeason",
-				"airsBeforeEpisode", "airsBeforeSeason", "awards", "characters", "contentRatings",
+				"airsBeforeEpisode", "airsBeforeSeason", "awards", "characters", "contentRatings", "networks", "studios", "nominations",
 				"productionCode", "remoteIds", "tagOptions", "trailers"
 			],
 				( episode ) => {
@@ -243,7 +243,7 @@ describe( "TVDB", () => {
 	 */
 	describe( "Lists", () => {
 		const BASE_KEYS = [
-			"aliases", "id", "isOfficial", "name", "nameTranslations", "overview",
+			"aliases", "id", "isOfficial", "name", "nameTranslations", "overview", "score",
 			"overviewTranslations", "url"
 		]
 		describe( "All lists", () => {
@@ -267,7 +267,7 @@ describe( "TVDB", () => {
 	 */
 	describe( "Movies", () => {
 		const BASE_KEYS = [
-			"aliases", "id", "image", "name", "nameTranslations", "overviewTranslations", "score",
+			"aliases", "id", "image", "name", "nameTranslations", "overviewTranslations", "score", "lastUpdated", "runtime",
 			"slug", "status"
 		]
 		describe( "All movies", () => {
@@ -278,7 +278,7 @@ describe( "TVDB", () => {
 		} )
 		describe( "Fetch an extended movie record", () => {
 			testRecord( () => tvdb.movieExtended( 347 ), [ ...BASE_KEYS, "artworks", "audioLanguages",
-				"awards", "boxOffice", "budget", "characters", "lists", "genres",
+				"awards", "boxOffice", "budget", "characters", "lists", "genres", "companies", "chontentRatings", "first_released", "inspirations", "production_countries", "spoken_languages",
 				"originalCountry", "originalLanguage", "releases", "remoteIds", "studios",
 				"subtitleLanguages", "tagOptions", "trailers"
 			],
@@ -300,7 +300,7 @@ describe( "TVDB", () => {
 		describe( "Fetch an extended person record", () => {
 			testRecord( () => tvdb.personExtended( 294100 ), [
 				...BASE_KEYS, "awards", "biographies", "birth", "birthPlace", "characters",
-				"death", "gender", "races", "remoteIds", "tagOptions"
+				"death", "gender", "races", "remoteIds", "tagOptions", "translations"
 			],
 				( person ) => {
 					util.expectNullableDate( person.birth )
@@ -422,7 +422,7 @@ describe( "TVDB", () => {
 			] )
 		} )
 		describe( "Company types", () => {
-			testRecords( () => tvdb.companyTypes(), [ "id", "name" ] )
+			testRecords( () => tvdb.companyTypes(), [ "companyTypeId", "companyTypeName" ] )
 		} )
 		describe( "Entity types", () => {
 			testRecords( () => tvdb.entityTypes(), [ "id", "name", "hasSpecials" ] )
@@ -442,7 +442,7 @@ describe( "TVDB", () => {
 	 */
 	describe( "Seasons", () => {
 		const BASE_KEYS = [
-			"id", "image", "imageType", "name", "nameTranslations", "network", "number",
+			"id", "image", "imageType", "name", "nameTranslations", "number", "companies", "tagOptions",
 			"overviewTranslations", "seriesId", "type"
 		]
 		describe( "Fetch a season record", () => {
@@ -465,8 +465,8 @@ describe( "TVDB", () => {
 	describe( "Series", () => {
 		const BASE_KEYS = [
 			"aliases", "defaultSeasonType", "firstAired", "id", "image",
-			"isOrderRandomized", "lastAired", "name", "nameTranslations", "nextAired",
-			"originalCountry", "originalLanguage", "originalNetwork", "overviewTranslations",
+			"isOrderRandomized", "lastAired", "name", "nameTranslations", "nextAired", "lastUpdated", "averageRuntime",
+			"originalCountry", "originalLanguage", "overviewTranslations",
 			"score", "slug", "status"
 		]
 		describe( "Fetch all series", () => {
@@ -483,7 +483,7 @@ describe( "TVDB", () => {
 		describe( "Fetch an extended series record", () => {
 			testRecord( () => tvdb.seriesExtended( 75897 ), [ ...BASE_KEYS, "airsDays", "airsTime",
 				"airsTimeUTC", "artworks", "characters", "lists", "genres", "networks", "remoteIds",
-				"seasons", "trailers" ],
+				"seasons", "trailers", "episodes" ],
 				util.expectSeriesToBeParsed
 			)
 		} )
