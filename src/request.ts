@@ -95,12 +95,21 @@ export default class ApiRequestManager {
 				res.on( "data", chunk => { rawData += chunk } )
 				res.on( "error", reject )
 				res.on( "end", () => {
-					let response: IApiResponse<T> = JSON.parse( rawData )
-					if ( res.statusCode == 200 ) {
-						resolve( response.data )
-					} else {
-						reject( new StatusError( response, <number> res.statusCode ) )
+					let response: IApiResponse<T>
+
+					try {
+						response = JSON.parse( rawData )
+
+						if ( res.statusCode == 200 ) {
+							resolve( response.data )
+						} else {
+							reject( new StatusError( response, <number> res.statusCode ) )
+						}
+
+					} catch {
+						reject( new StatusError( "Parse Error on rawData", <number> res.statusCode ) )
 					}
+
 				} )
 			} )
 				.on( "error", reject )

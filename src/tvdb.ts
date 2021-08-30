@@ -63,14 +63,14 @@ export default class TVDB {
 	 * Retrieve all available artwork statuses
 	 */
 	public async artworkStatuses() {
-		return this.requestManager.get<Schema.IArtworkStatus[]>( `/artwork/statuses`, this.__token )
+		return await this.requestManager.get<Schema.IArtworkStatus[]>( `/artwork/statuses`, this.__token )
 	}
 
 	/**
 	 * Retrieve all available artwork types
 	 */
 	public async artworkTypes() {
-		return this.requestManager.get<Schema.IArtworkType[]>( `/artwork/types`, this.__token )
+		return await this.requestManager.get<Schema.IArtworkType[]>( `/artwork/types`, this.__token )
 	}
 
 	/**
@@ -79,7 +79,7 @@ export default class TVDB {
 	 * @param id
 	 */
 	public async artwork( id: number ) {
-		return this.requestManager.get<Schema.IArtworkBaseRecord>( `/artwork/${ id }`, this.__token )
+		return await this.requestManager.get<Schema.IArtworkBaseRecord>( `/artwork/${ id }`, this.__token )
 	}
 
 	/**
@@ -99,7 +99,7 @@ export default class TVDB {
 	 * @param language
 	 */
 	public async artworkTranslations( id: number, language: string ) {
-		return this.requestManager.get<Schema.ITranslation>( `/artwork/${ id }/translations/${ language }`, this.__token )
+		return await this.requestManager.get<Schema.ITranslation>( `/artwork/${ id }/translations/${ language }`, this.__token )
 	}
 
 	// Award Information ---------------------------------------------------------------------------
@@ -110,7 +110,7 @@ export default class TVDB {
 	 * @param id
 	 */
 	public async awardCategory( id: number ) {
-		return this.requestManager.get<Schema.IAwardCategoryBaseRecord>( `/awards/categories/${ id }`, this.__token )
+		return await this.requestManager.get<Schema.IAwardCategoryBaseRecord>( `/awards/categories/${ id }`, this.__token )
 	}
 
 	/**
@@ -129,7 +129,7 @@ export default class TVDB {
 	 * @param page
 	 */
 	public async allAwards() {
-		return this.requestManager.get<Schema.IAwardBaseRecord[]>( `/awards`, this.__token )
+		return await this.requestManager.get<Schema.IAwardBaseRecord[]>( `/awards`, this.__token )
 	}
 
 	/**
@@ -138,7 +138,7 @@ export default class TVDB {
 	 * @param id
 	 */
 	public async award( id: number ) {
-		return this.requestManager.get<Schema.IAwardBaseRecord>( `/awards/${ id }`, this.__token )
+		return await this.requestManager.get<Schema.IAwardBaseRecord>( `/awards/${ id }`, this.__token )
 	}
 
 	/**
@@ -147,7 +147,7 @@ export default class TVDB {
 	 * @param id
 	 */
 	public async awardExtended( id: number ) {
-		return this.requestManager.get<Schema.IAwardExtendedRecord>( `/awards/${ id }/extended`, this.__token )
+		return await this.requestManager.get<Schema.IAwardExtendedRecord>( `/awards/${ id }/extended`, this.__token )
 	}
 
 	// Character Information -----------------------------------------------------------------------
@@ -180,7 +180,7 @@ export default class TVDB {
 	 * Retrieve all company types
 	 */
 	public async companyTypes() {
-		return this.requestManager.get<Schema.ICompanyType[]>( `/companies/types`, this.__token )
+		return await this.requestManager.get<Schema.ICompanyType[]>( `/companies/types`, this.__token )
 	}
 
 	/**
@@ -199,42 +199,42 @@ export default class TVDB {
 	 * Retrieve all available content ratings
 	 */
 	public async contentRatings() {
-		return this.requestManager.get<Schema.IContentRating[]>( `/content/ratings`, this.__token )
+		return await this.requestManager.get<Schema.IContentRating[]>( `/content/ratings`, this.__token )
 	}
 
 	/**
 	 * Retrieve all available countries
 	 */
 	public async countries() {
-		return this.requestManager.get<Schema.ICountry[]>( `/countries`, this.__token )
+		return await this.requestManager.get<Schema.ICountry[]>( `/countries`, this.__token )
 	}
 
 	/**
 	 * Retrieve all available entity types
 	 */
 	public async entityTypes() {
-		return this.requestManager.get<Schema.IEntityType[]>( `/entities/types`, this.__token )
+		return await this.requestManager.get<Schema.IEntityType[]>( `/entities/types`, this.__token )
 	}
 
 	/**
 	 * Retrieve all available genders
 	 */
 	public async genders() {
-		return this.requestManager.get<Schema.IGender[]>( `/genders`, this.__token )
+		return await this.requestManager.get<Schema.IGender[]>( `/genders`, this.__token )
 	}
 
 	/**
 	 * Retrieve all available languages
 	 */
 	public async languages() {
-		return this.requestManager.get<Schema.ILanguage[]>( `/languages`, this.__token )
+		return await this.requestManager.get<Schema.ILanguage[]>( `/languages`, this.__token )
 	}
 
 	/**
 	 * Retrieve all available source types
 	 */
 	public async sourceTypes() {
-		return this.requestManager.get<Schema.ISourceType[]>( `/sources/types`, this.__token )
+		return await this.requestManager.get<Schema.ISourceType[]>( `/sources/types`, this.__token )
 	}
 
 	// Episode Information -------------------------------------------------------------------------
@@ -267,7 +267,7 @@ export default class TVDB {
 	 * @param language
 	 */
 	public async episodeTranslations( id: number, language: string ) {
-		return this.requestManager.get<Schema.ITranslation>( `/episodes/${ id }/translations/${ language }`, this.__token )
+		return await this.requestManager.get<Schema.ITranslation>( `/episodes/${ id }/translations/${ language }`, this.__token )
 	}
 
 	// Genre Information ---------------------------------------------------------------------------
@@ -276,7 +276,7 @@ export default class TVDB {
 	 * Retrieve all available genres
 	 */
 	public async allGenres() {
-		return this.requestManager.get<Schema.IGenreBaseRecord[]>( `/genres`, this.__token )
+		return await this.requestManager.get<Schema.IGenreBaseRecord[]>( `/genres`, this.__token )
 	}
 
 	/**
@@ -285,7 +285,7 @@ export default class TVDB {
 	 * @param id
 	 */
 	public async genre( id: number ) {
-		return this.requestManager.get<Schema.IGenreBaseRecord>( `/genres/${ id }`, this.__token )
+		return await this.requestManager.get<Schema.IGenreBaseRecord>( `/genres/${ id }`, this.__token )
 	}
 
 	// List Information ----------------------------------------------------------------------------
@@ -318,7 +318,7 @@ export default class TVDB {
 	 * @param id
 	 */
 	public async listExtended( id: number ) {
-		return this.requestManager.get<Schema.IListExtendedRecord>( `/lists/${ id }/extended`, this.__token )
+		return await this.requestManager.get<Schema.IListExtendedRecord>( `/lists/${ id }/extended`, this.__token )
 	}
 
 	// Movie Informaiton ---------------------------------------------------------------------------
@@ -329,7 +329,7 @@ export default class TVDB {
 	 * @param page
 	 */
 	public async allMovies( page: number = 0 ) {
-		return this.requestManager.get<Schema.IMovieBaseRecord[]>( `/movies`, this.__token, {
+		return await this.requestManager.get<Schema.IMovieBaseRecord[]>( `/movies`, this.__token, {
 			page
 		} )
 	}
@@ -359,7 +359,7 @@ export default class TVDB {
 	 * Retrieve all available movie statuses
 	 */
 	public async movieStatuses() {
-		return this.requestManager.get<Schema.IStatus[]>( `/movies/statuses`, this.__token )
+		return await this.requestManager.get<Schema.IStatus[]>( `/movies/statuses`, this.__token )
 	}
 
 	/**
@@ -369,7 +369,7 @@ export default class TVDB {
 	 * @param language
 	 */
 	public async movieTranslations( id: number, language: string ) {
-		return this.requestManager.get<Schema.ITranslation>( `/movies/${ id }/translations/${ language }`, this.__token )
+		return await this.requestManager.get<Schema.ITranslation>( `/movies/${ id }/translations/${ language }`, this.__token )
 	}
 
 	// People Information --------------------------------------------------------------------------
@@ -378,7 +378,7 @@ export default class TVDB {
 	 * Retrieve the different types of people
 	 */
 	public async personTypes() {
-		return this.requestManager.get<Schema.IPeopleType[]>( `/people/types`, this.__token )
+		return await this.requestManager.get<Schema.IPeopleType[]>( `/people/types`, this.__token )
 	}
 
 	/**
@@ -387,7 +387,7 @@ export default class TVDB {
 	 * @param id
 	 */
 	public async person( id: number ) {
-		return this.requestManager.get<Schema.IPeopleBaseRecord>( `/people/${ id }`, this.__token )
+		return await this.requestManager.get<Schema.IPeopleBaseRecord>( `/people/${ id }`, this.__token )
 	}
 
 	/**
@@ -407,7 +407,7 @@ export default class TVDB {
 	 * @param language
 	 */
 	public async personTranslations( id: number, language: string ) {
-		return this.requestManager.get<Schema.ITranslation>( `/people/${ id }/translations/${ language }`, this.__token )
+		return await this.requestManager.get<Schema.ITranslation>( `/people/${ id }/translations/${ language }`, this.__token )
 	}
 
 	// Search Information --------------------------------------------------------------------------
@@ -436,7 +436,7 @@ export default class TVDB {
 	 * @param id
 	 */
 	public async season( id: number ) {
-		return this.requestManager.get<Schema.ISeasonBaseRecord>( `/seasons/${ id }`, this.__token )
+		return await this.requestManager.get<Schema.ISeasonBaseRecord>( `/seasons/${ id }`, this.__token )
 	}
 
 	/**
@@ -453,7 +453,7 @@ export default class TVDB {
 	 * Retrieve all available season types
 	 */
 	public async seasonTypes() {
-		return this.requestManager.get<Schema.ISeasonType[]>( `/seasons/types`, this.__token )
+		return await this.requestManager.get<Schema.ISeasonType[]>( `/seasons/types`, this.__token )
 	}
 
 	/**
@@ -463,7 +463,7 @@ export default class TVDB {
 	 * @param language
 	 */
 	public async seasonTranslations( id: number, language: string ) {
-		return this.requestManager.get<Schema.ITranslation>( `/seasons/${ id }/translations/${ language }`, this.__token )
+		return await this.requestManager.get<Schema.ITranslation>( `/seasons/${ id }/translations/${ language }`, this.__token )
 	}
 
 	// Series Information --------------------------------------------------------------------------
@@ -518,14 +518,14 @@ export default class TVDB {
 	 * @param language The language to translate to
 	 */
 	public async seriesTranslations( id: number, language: string ) {
-		return this.requestManager.get<Schema.ITranslation>( `/series/${ id }/translations/${ language }`, this.__token )
+		return await this.requestManager.get<Schema.ITranslation>( `/series/${ id }/translations/${ language }`, this.__token )
 	}
 
 	/**
 	 * Retrieve all available statuses for a series
 	 */
 	public async seriesStatuses() {
-		return this.requestManager.get<Schema.IStatus[]>( `/series/statuses`, this.__token )
+		return await this.requestManager.get<Schema.IStatus[]>( `/series/statuses`, this.__token )
 	}
 
 	/**
@@ -533,7 +533,7 @@ export default class TVDB {
 	 *
 	 * @param since Timestamp in seconds
 	 */
-	public async updates( since: number | Date, type: string, action: string ) {
+	public async updates( since: number | Date, type: string, action: string ): Promise<Schema.IEntityUpdate[]> {
 
 		if ( since instanceof Date ) {
 			since = Math.floor( since.getTime() / 1000 )
