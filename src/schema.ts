@@ -363,7 +363,7 @@ export interface ISeasonBaseRecord {
 	slug?: string,          // @WARN possibly undefined with extended record
 	type: ISeasonType           // int64
 	companies: Raw.ICompanies,
-	tagOptions: ITagOption[]
+	tagOptions?: ITagOption[]
 }
 
 /**

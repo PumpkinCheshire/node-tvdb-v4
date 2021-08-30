@@ -157,7 +157,6 @@ export interface IListBaseRecord {
 	overview: string,
 	overviewTranslations: string[],
 	url: string,
-	score: number
 }
 
 /**

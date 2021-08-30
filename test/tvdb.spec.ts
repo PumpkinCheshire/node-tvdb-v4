@@ -278,7 +278,7 @@ describe( "TVDB", () => {
 		} )
 		describe( "Fetch an extended movie record", () => {
 			testRecord( () => tvdb.movieExtended( 347 ), [ ...BASE_KEYS, "artworks", "audioLanguages",
-				"awards", "boxOffice", "budget", "characters", "lists", "genres", "companies", "chontentRatings", "first_released", "inspirations", "production_countries", "spoken_languages",
+				"awards", "boxOffice", "budget", "characters", "lists", "genres", "companies", "contentRatings", "first_release", "inspirations", "production_countries", "spoken_languages",
 				"originalCountry", "originalLanguage", "releases", "remoteIds", "studios",
 				"subtitleLanguages", "tagOptions", "trailers"
 			],
@@ -442,7 +442,7 @@ describe( "TVDB", () => {
 	 */
 	describe( "Seasons", () => {
 		const BASE_KEYS = [
-			"id", "image", "imageType", "name", "nameTranslations", "number", "companies", "tagOptions",
+			"id", "image", "imageType", "name", "nameTranslations", "number", "companies",
 			"overviewTranslations", "seriesId", "type"
 		]
 		describe( "Fetch a season record", () => {
@@ -482,7 +482,7 @@ describe( "TVDB", () => {
 		} )
 		describe( "Fetch an extended series record", () => {
 			testRecord( () => tvdb.seriesExtended( 75897 ), [ ...BASE_KEYS, "airsDays", "airsTime",
-				"airsTimeUTC", "artworks", "characters", "lists", "genres", "networks", "remoteIds",
+				"airsTimeUTC", "artworks", "characters", "lists", "genres", "remoteIds", "companies", "translations",
 				"seasons", "trailers", "episodes" ],
 				util.expectSeriesToBeParsed
 			)
