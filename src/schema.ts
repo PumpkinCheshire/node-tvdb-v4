@@ -1,4 +1,4 @@
-import * as Raw from "./schema_raw"
+import * as Raw from "./schema_raw.js"
 
 /**
  * Modify raw schema definition to contain parsed attributes

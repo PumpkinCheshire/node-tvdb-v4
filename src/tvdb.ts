@@ -1,7 +1,7 @@
-import ApiRequestManager from "./request"
-import * as Schema from "./schema"
-import * as Raw from "./schema_raw"
-import parse from "./parse"
+import ApiRequestManager from "./request.js"
+import * as Schema from "./schema.js"
+import * as Raw from "./schema_raw.js"
+import parse from "./parse.js"
 
 export default class TVDB {
 	/**

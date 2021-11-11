@@ -1,5 +1,5 @@
-import * as Schema from "./schema"
-import * as Raw from "./schema_raw"
+import * as Schema from "./schema.js"
+import * as Raw from "./schema_raw.js"
 
 /**
  * A set of parsing functions to convert data types in responses
@@ -207,13 +207,16 @@ const parse = {
 		} )
 	},
 
-	seriesCompanies( companies: Raw.ICompany[] ): Schema.ICompanies {
+	seriesCompanies( companies: Raw.ICompanies ): Schema.ICompanies {
 		return <Schema.ICompanies> {
-			studio: companies.filter( company => company.companyType?.companyTypeId === 2 ).map( parse.company ),
-			network: companies.filter( company => company.companyType?.companyTypeId === 1 ).map( parse.company ),
-			production: companies.filter( company => company.companyType?.companyTypeId === 3 ).map( parse.company ),
-			distributor: companies.filter( company => company.companyType?.companyTypeId === 4 ).map( parse.company ),
-			specialEffects: companies.filter( company => company.companyType?.companyTypeId === 5 ).map( parse.company ),
+			studio: companies.studio ? companies.studio.map( parse.company ) : [],
+			network: companies.network ? companies.network.map( parse.company ) : [],
+			production: companies.production ? companies.production.map( parse.company ) : [],
+			distributor: companies.distributor ? companies.distributor.map( parse.company ) : [],
+			specialEffects:
+				companies.specialEffects ? companies.specialEffects.map( parse.company ) : (
+					companies.special_effects ? companies.special_effects.map( parse.company ) : []
+				)
 		}
 	},
 

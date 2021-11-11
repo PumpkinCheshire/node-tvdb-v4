@@ -1,4 +1,4 @@
-import * as Schema from "./schema"
+import * as Schema from "./schema.js"
 
 
 export interface ICompanies {
@@ -318,7 +318,7 @@ export interface ISeriesExtendedRecord extends ISeriesBaseRecord {
 	airsTime: string,
 	airsTimeUTC: number | null,                 // @WARN Not listed in spec
 	artworks: Schema.IArtworkBaseRecord[],
-	companies: ICompany[]
+	companies: ICompanies
 	characters: ICharacter[],
 	lists: {},                            // @TODO Check this...
 	genres: Schema.IGenreBaseRecord[],
